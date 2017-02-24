@@ -19,15 +19,15 @@ public class TestLala {
         lalaLexer lexer = new lalaLexer(input);
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         lalaParser parser = new lalaParser(tokens);
-        ParseTree tree = parser.prog();
-        System.out.println(tree.toStringTree(parser));
-        //lalaParser.ProgContext tree = parser.prog();
+        //ParseTree tree = parser.prog();
+        //System.out.println(tree.toStringTree(parser));
+        lalaParser.ProgContext tree = parser.prog();
 
         DefSymbols def = new DefSymbols();
         ParseTreeWalker walker = new ParseTreeWalker();
         walker.walk(def,tree);
 
-        System.out.println(def.globals.symbols);
-        //System.out.println(((BasicScope)tree.globals).symbols);
+        //System.out.println(def.globals.symbols);
+        System.out.println(((BasicScope)tree.globals).symbols);
     }
 }

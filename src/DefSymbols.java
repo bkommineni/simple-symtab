@@ -4,23 +4,23 @@ import symtab.*;
  * Created by bharu on 2/22/17.
  */
 public class DefSymbols extends lalaBaseListener {
-    public BasicScope globals;
+    //public BasicScope globals;
     public Scope currentScope = null;
 
     public DefSymbols() {
-        //currentScope = new BasicScope(currentScope);
-        globals = new BasicScope();
-        //currentScope.define(new BuiltInTypeSymbol("int"));
-        //currentScope.define(new BuiltInTypeSymbol("float"));
-        globals.define(new BuiltInTypeSymbol("int"));
-        globals.define(new BuiltInTypeSymbol("float"));
+        currentScope = new BasicScope(currentScope);
+        //globals = new BasicScope();
+        currentScope.define(new BuiltInTypeSymbol("int"));
+        currentScope.define(new BuiltInTypeSymbol("float"));
+        //globals.define(new BuiltInTypeSymbol("int"));
+        //globals.define(new BuiltInTypeSymbol("float"));
     }
 
     @Override
     public void enterProg(lalaParser.ProgContext ctx) {
-        currentScope = globals;
+        //currentScope = globals;
         //ctx.globals = globals;
-        //ctx.globals = currentScope;//annotating parse tree
+        ctx.globals = currentScope;//annotating parse tree
     }
 
     @Override
